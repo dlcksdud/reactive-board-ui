@@ -1,51 +1,66 @@
+import { useEffect, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import { ThComponent } from './component/ThComponent';
+import {Table, Button} from 'react-bootstrap';
+import { TdComponent } from './component/TdComponent';
+
 
 function App() {
+
+  const [theadTitle, setTheadTitle] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    getTheadTitle();
+    getUserInfo();
+  }, [])
+
+  const getTheadTitle = () => {
+      axios.get("http://localhost:8089/getColumn")
+          .then((response) => {
+              const columnArr = response.data.getColumn;
+              setTheadTitle(columnArr);
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  };
+
+  const getUserInfo = () => {
+      axios.get("http://localhost:8089/getUserInfo")
+          .then((response) => {
+            console.log(response.data);
+            const arr = response.data.userData;
+            setUserInfo(arr);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+  }
+
+  const createUser = () => {
+
+  }
+
+
   return (
     <div>
-         <form id="listForm">
-            <table>
-                <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>SERVER_IP</th>
-                    <th>DATABASE_TYPE</th>
-                    <th>DATABASE_ID</th>
-                    <th>REF_INFO</th>
-                    <th>DATABASE_VERSION</th>
-                    <th>DATABASE_USER_ID</th>
-                </tr>
-                </thead>
-                <tbody id="tableBody">
-                <tr th:each="user : ${userData}">
-                    <td th:onclick="|location.href='/details/${user.num}'|">
-                        <span th:text="${user.num}"></span>
-                    </td>
-                    <td th:onclick="|location.href='/details/${user.num}'|">
-                        <span th:text="${user.SERVER_IP}"></span>
-                    </td>
-                    <td th:onclick="|location.href='/getOneUser/${user.num}'|">
-                        <span th:text="${user.DATABASE_TYPE}"></span>
-                    </td>
-                    <td th:onclick="|location.href='/getOneUser/${user.num}'|">
-                        <span th:text="${user.DATABASE_ID}"></span>
-                    </td>
-                    <td th:onclick="|location.href='/getOneUser/${user.num}'|">
-                        <span th:text="${user.REF_INFO}"></span>
-                    </td>
-                    <td th:onclick="|location.href='/getOneUser/${user.num}'|">
-                        <span th:text="${user.DATABASE_VERSION}"></span>
-                    </td>
-                    <td th:onclick="|location.href='/getOneUser/${user.num}'|">
-                        <span th:text="${user.DATABASE_USER_ID}"></span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+      <Table striped bordered hover>
+          <thead>
+              <tr>
+                <ThComponent title={theadTitle}></ThComponent>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <TdComponent userInfo={userInfo}></TdComponent>
+            </tr>
+          </tbody>
+      </Table>
 
-            <button type="button" onclick="createUser()">사용자 생성</button>
-        </form>
-      
+      <Button variant="primary" onClick={()=> createUser()}>사용자 생성</Button>
     </div>
   );
 }
