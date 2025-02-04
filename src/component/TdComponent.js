@@ -10,7 +10,7 @@ export const TdComponent = ({userInfo}) => {
     }
 
   return (
-    <div>
+    <>
         {
             
         userInfo.map((user, index) => (
@@ -26,7 +26,7 @@ export const TdComponent = ({userInfo}) => {
             ))
         }
         
-    </div>
+    </>
   )
 }
 

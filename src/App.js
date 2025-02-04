@@ -49,14 +49,12 @@ function App() {
     <div>
       <Table striped bordered hover>
           <thead>
-              <tr>
-                <ThComponent title={theadTitle}></ThComponent>
-              </tr>
+            <tr>
+              <ThComponent title={theadTitle}></ThComponent>
+            </tr>
           </thead>
           <tbody>
-            <tr>
               <TdComponent userInfo={userInfo}></TdComponent>
-            </tr>
           </tbody>
       </Table>
 
