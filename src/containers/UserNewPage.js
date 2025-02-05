@@ -32,8 +32,9 @@ export const UserNewPage = () => {
       setBtnColor('');
     }
     else if(isUpdate) {
-      pageTypeTxt = '수정하기';
+      pageTypeTxt = '수정하기';  
       setBtnName('update');
+      setBtnColor('');
     }
 
 
