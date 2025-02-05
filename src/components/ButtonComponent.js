@@ -1,13 +1,16 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+
 
 export const ButtonComponent = (props) => {
 
-    const {name, type, color, onAction} = props;
+    const {name, color, onAction} = props;
     let label = '';
     let icon = '';
     let width = '100px';
 
-    switch(type) {
+    switch(name) {
         case 'add' :
             label = '등록하기';
             icon = 'la la-plus';

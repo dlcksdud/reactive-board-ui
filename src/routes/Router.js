@@ -14,6 +14,8 @@ export const ContentRoutes = () => {
         <Route path='/users/detail/:num' element={<UserNewPage/>}></Route>
         <Route path='/users/update/:num' element={<UserNewPage/>}></Route>
         <Route path='/users/userAdd' element={<UserNewPage/>}></Route>
+        {/** 사용자 삭제 */}
+        <Route path='/users/delete' element={<UserNewPage/>}></Route>
     </Routes>
     
   )

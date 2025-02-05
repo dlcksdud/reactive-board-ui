@@ -68,7 +68,7 @@ export const UserListPage = () => {
             </tbody>
         </Table>
 
-        <ButtonComponent name='add' type="add" color='btn-blue' onAction={onAction}>사용자 생성</ButtonComponent>
+        <ButtonComponent name='add' color='btn-blue' onAction={onAction}>사용자 생성</ButtonComponent>
         </div>
     </div>
   )
